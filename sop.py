@@ -50,7 +50,7 @@ def get_response(query, vector_db):
     sources = result["source_documents"]
     
     # Format response with quotes from the book
-    quoted_response = f"{response}\n\n**References from Ellen Gould White's Book:**\n"
+    quoted_response = f"{response}\n\n**References from the Book Steps to Christ by Ellen G. White:**\n"
     for i, doc in enumerate(sources, 1):
         quoted_response += f"{i}. \"{doc.page_content[:200]}...\" (Page {doc.metadata.get('page', 'unknown')})\n"
     
@@ -58,8 +58,8 @@ def get_response(query, vector_db):
 
 # Streamlit UI
 def main():
-    st.title("Prophecy: Christian Queries with Ellen Gould White")
-    st.write("Ask a question, and receive an answer referencing Ellen Gould White's book.")
+    st.title("The Book: Steps to Christ")
+    st.write("Ask a question, and receive an answer referencing the Book.")
 
     # Initialize vector database
     if "vector_db" not in st.session_state:
@@ -67,7 +67,7 @@ def main():
             st.session_state.vector_db = initialize_vector_db(PDF_PATH)
 
     # Query input
-    query = st.text_input("Enter your question:", placeholder="e.g., What does Ellen Gould White say about prayer?")
+    query = st.text_input("Enter your question:", placeholder="e.g., What does Ellen G. White say about prayer?")
     
     # Process query and display response
     if st.button("Submit") and query:
